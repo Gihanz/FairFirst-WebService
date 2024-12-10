@@ -1,0 +1,330 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.boc</groupId>
+	<artifactId>WebService</artifactId>
+	<packaging>war</packaging>
+	<version>0.1</version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.0.1.RELEASE</spring.version>
+		<spring.security.version>3.2.0.RELEASE</spring.security.version>
+		<hibernate.version>4.2.7.Final</hibernate.version>
+		<database.groupId>com.ibm.db2.jcc</database.groupId>
+		<database.artifactId>db2jcc</database.artifactId>
+		<database.version>10.5</database.version>
+		<database.class>com.ibm.db2.jcc.DB2Driver</database.class>
+		<aspectj.version>1.8.2</aspectj.version>
+		<logback.version>1.1.3</logback.version>
+		<jcl.slf4j.version>1.7.12</jcl.slf4j.version>
+		<cxf.version>2.7.11</cxf.version>
+	</properties>
+
+	<name>WebService Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>jcl-over-slf4j</artifactId> 
+			<version>1.7.6</version> </dependency> -->
+
+		<!-- DB -->
+		<!-- <dependency> <groupId>com.ibm.db2.jcc</groupId> <artifactId>db2jcc</artifactId> 
+			<version>8.1.10.812</version> <scope>system</scope> <systemPath>D:\saimadan\jars\db2jcc-8.1.10.812.jar</systemPath> 
+			</dependency> -->
+
+		<dependency>
+			<groupId>com.ibm.db2.jcc</groupId>
+			<artifactId>db2jcc</artifactId>
+			<version>10.5</version>
+			<scope>system</scope>
+			<systemPath>D:\mahesh\jars\db2jcc-10.5.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.db2.jcc</groupId>
+			<artifactId>db2jcc_license_cu</artifactId>
+			<version>10.5</version>
+			<scope>system</scope>
+			<systemPath>D:\mahesh\jars\db2jcc_license_cu-10.5.jar</systemPath>
+		</dependency>
+		<!-- <dependency> <groupId>com.ibm.db2.jcc</groupId> <artifactId>db2jcc4</artifactId> 
+			<version>10.5</version> <scope>system</scope> <systemPath>D:\saimadan\jars\db2jcc4-10.5.jar</systemPath> 
+			</dependency> -->
+
+		<!-- Hibernate -->
+		<!-- jboss eap 6.3 is based on jpa 2.0, need an older hibernate version 
+			to downgrade to meet jpa 2.0 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>javassist</artifactId>
+					<groupId>org.javassist</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.18.1-GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.3.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<!-- Spring -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+		<!--<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+			<version>1.7.12</version> </dependency> -->
+
+		<!-- 2. Bridge logging from JCL to SLF4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcl.slf4j.version}</version>
+		</dependency>
+
+		<!-- 3. logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+
+		<!-- webservice -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-ws-policy</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-extension-providers</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.neethi</groupId>
+			<artifactId>neethi</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-jaxrs</artifactId> 
+			<version>1.9.9</version> </dependency> <dependency> <groupId>org.codehaus.jackson</groupId> 
+			<artifactId>jackson-xc</artifactId> <version>1.9.9</version> </dependency> -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.boc</groupId>
+			<artifactId>communicator</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.oasis_open.docs.ns</groupId>
+			<artifactId>cmis</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- Logging -->
+		<!-- <dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> 
+			<version>1.2.17</version> </dependency> -->
+
+		<!-- Logging -->
+
+		<!-- <dependency> <groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId> 
+			<version>1.1.1</version> </dependency> <dependency> <groupId>commons-collections</groupId> 
+			<artifactId>commons-collections</artifactId> <version>3.2.1</version> </dependency> -->
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.15</version>
+				<configuration>
+					<excludes>
+						<exclude>**/selenium/**</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>selenium</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<excludes>
+								<exclude>none</exclude>
+							</excludes>
+							<includes>
+								<include>**/selenium/**</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- <plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.26</version>
+				<executions> <execution> <id>start-jetty</id> <phase>pre-integration-test</phase> 
+					<goals> <goal>run</goal> </goals> <configuration> <daemon>true</daemon> </configuration> 
+					</execution> <execution> <id>stop-jetty</id> <phase>post-integration-test</phase> 
+					<goals> <goal>stop</goal> </goals> </execution> </executions>
+				<configuration>
+					<contextPath>/RestWS</contextPath>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<jettyEnvXml>${basedir}/jetty-env.xml</jettyEnvXml>
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>1112</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+				</configuration>
+			</plugin> -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<configuration>
+					<contextPath>/RestWS</contextPath>	
+			         <systemProperties>
+			            <systemProperty>
+			              <name>java.security.auth.login.config</name>
+			               <value>C:/tmp/jaas.conf.WSI</value>
+			            </systemProperty>			            
+			         </systemProperties>				
+			         <jettyEnvXml>${basedir}/jetty-env.xml</jettyEnvXml>				
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>9090</port>
+						</connector>
+					</connectors>
+					<stopPort>9966</stopPort>
+					<stopKey>foo</stopKey>
+					<requestLog implementation="org.mortbay.jetty.NCSARequestLog">
+						<filename>target/yyyy_mm_dd.request.log</filename>
+						<retainDays>90</retainDays>
+						<append>true</append>
+						<extended>false</extended>
+						<logTimeZone>GMT</logTimeZone>
+					</requestLog>					
+				</configuration>
+				
+			</plugin>
+		</plugins>
+		<finalName>BOC-WebService</finalName>
+	</build>
+</project>

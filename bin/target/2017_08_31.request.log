@@ -1,0 +1,3 @@
+127.0.0.1 -  -  [31/Aug/2017:06:01:46 +0000] "POST /RestWS/g?cif=0008980111 HTTP/1.1" 404 1373 
+127.0.0.1 -  -  [31/Aug/2017:06:04:14 +0000] "POST /RestWS/g?cif=0008980111 HTTP/1.1" 404 1373 
+127.0.0.1 -  -  [31/Aug/2017:07:12:56 +0000] "POST /RestWS/memoInq?alertKeyType=CU&alertKeyId=0001912835&alertTitle=0001912835&alertType=Memo&alertCategory=FULL-NAME HTTP/1.1" 200 263 

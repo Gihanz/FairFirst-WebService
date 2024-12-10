@@ -1,0 +1,14 @@
+com\tl\ws\RetrieveCEFolder.class
+com\tl\dao\exceptions\DAOException.class
+com\tl\service\dbService.class
+com\tl\ws\UploadDoc.class
+com\tl\service\exceptions\BSLException.class
+com\tl\dao\dbDao.class
+com\tl\dao\impl\dbDaoImpl.class
+com\tl\ws\BaseWebServiceEndPointImpl.class
+com\tl\dao\impl\abstractWFConfigdao.class
+com\tl\ws\BinToHex.class
+com\tl\ws\InputStreamDataSource.class
+com\tl\service\impl\dbServiceImpl.class
+com\tl\ws\CreateCase.class
+com\tl\ws\WsServiceImpl.class
